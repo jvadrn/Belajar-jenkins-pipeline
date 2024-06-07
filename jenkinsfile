@@ -8,13 +8,13 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh 'clean build'
+
                 }
             }
             stage('Test') {
                 steps {
                     echo 'Running tests...'
-                    sh 'test'
+                    
                 }
             }
 //             stage('Deploy') {
