@@ -8,14 +8,14 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh './gradlew clean build'
+                    sh './gradle clean build'
                 }
             }
             stage('Test') {
                 steps {
-                sh './gradlew clean build --info'
+                sh './gradle clean build --info'
                     echo 'Running tests...'
-                    sh './gradlew test'
+                    sh './gradle test'
                 }
             }
 //             stage('Deploy') {
