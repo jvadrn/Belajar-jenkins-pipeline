@@ -8,13 +8,13 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh 'mvn -v'
+                    sh 'mv -v'
                 }
             }
             stage('Test') {
                 steps {
                     echo 'Running tests...'
-                    
+
                 }
             }
 //             stage('Deploy') {
