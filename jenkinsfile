@@ -4,36 +4,45 @@ pipeline{
             label "linux && java11"
         }
     }
-    stages{
-        stage('Build'){
-            steps{
-                echo 'this is build'
+    stages {
+            stage('Checkout') {
+                steps {
+                    echo 'Checking out source code...'
+                    git 'https://github.com/jvadrn/Belajar-jenkins-pipeline.git' // Ganti dengan URL repository Anda
+                }
+            }
+            stage('Build') {
+                steps {
+                    echo 'Building the application...'
+                    sh './gradlew clean build'
+                }
+            }
+            stage('Test') {
+                steps {
+                    echo 'Running tests...'
+                    sh './gradlew test'
+                }
+            }
+//             stage('Deploy') {
+//                 steps {
+//                     echo 'Deploying the application...'
+//                     sh '''
+//                     # Ganti dengan perintah deploy yang sesuai dengan kebutuhan Anda
+//                     scp build/libs/myapp.jar root@157.245.199.194:/path/to/deploy/
+//                     ssh root@157.245.199.194 'java -jar /path/to/deploy/myapp.jar &'
+//                     '''
+//                 }
+//             }
+        }
+        post {
+            always {
+                echo 'Cleaning up...'
+            }
+            success {
+                echo 'Pipeline succeeded!'
+            }
+            failure {
+                echo 'Pipeline failed!'
             }
         }
-        stage('Test'){
-            steps{
-                echo 'this is test'
-            }
-        }
-        stage('Deploy'){
-            steps{
-                echo 'this is Deploy'
-            }
-        }
-    }
-
-    post{
-        always{
-            echo "I will say Hello again"
-        }
-        success{
-            echo "Huraa sukses"
-        }
-        failure{
-            echo "shitt, its not good"
-        }
-        cleanup{
-            echo "this is last time"
-        }
-    }
 }
