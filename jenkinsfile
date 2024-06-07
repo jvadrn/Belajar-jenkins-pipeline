@@ -8,7 +8,7 @@ pipeline{
             stage('Checkout') {
                 steps {
                     echo 'Checking out source code...'
-                    git 'https://github.com/jvadrn/Belajar-jenkins-pipeline.git' // Ganti dengan URL repository Anda
+                    git branch: 'main', url: 'https://github.com/jvadrn/Belajar-jenkins-pipeline.git' // Ganti dengan URL repository Anda
                 }
             }
             stage('Build') {
