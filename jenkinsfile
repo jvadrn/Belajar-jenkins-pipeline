@@ -5,12 +5,6 @@ pipeline{
         }
     }
     stages {
-            stage('Checkout') {
-                steps {
-                    echo 'Checking out source code...'
-                    git branch: 'main', url: 'https://github.com/jvadrn/Belajar-jenkins-pipeline.git' // Ganti dengan URL repository Anda
-                }
-            }
             stage('Build') {
                 steps {
                     echo 'Building the application...'
