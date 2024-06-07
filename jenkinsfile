@@ -8,14 +8,13 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh './gradle clean build'
+                    sh 'mvn clean build'
                 }
             }
             stage('Test') {
                 steps {
-                sh './gradle clean build --info'
                     echo 'Running tests...'
-                    sh './gradle test'
+                    sh 'mvn test'
                 }
             }
 //             stage('Deploy') {
