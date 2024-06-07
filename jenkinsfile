@@ -8,7 +8,7 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh 'mv -v'
+                    sh 'mvn -v'
                 }
             }
             stage('Test') {
