@@ -13,6 +13,7 @@ pipeline{
             }
             stage('Test') {
                 steps {
+                sh './gradlew clean build --info'
                     echo 'Running tests...'
                     sh './gradlew test'
                 }
