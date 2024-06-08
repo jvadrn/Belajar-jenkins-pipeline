@@ -4,6 +4,9 @@ pipeline{
             label "linux && java11"
         }
     }
+    tools {
+            maven 'Maven 3.8.7' // Nama konfigurasi Maven yang Anda tambahkan
+    }
     stages {
             stage('Build') {
                 steps {
