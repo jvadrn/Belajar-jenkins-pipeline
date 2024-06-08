@@ -8,7 +8,7 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    sh 'gradle clean build'
+                    sh 'maven clean build'
                 }
             }
             stage('Test') {
