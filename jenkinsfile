@@ -20,16 +20,16 @@ pipeline{
                     sh 'mvn test'
                 }
             }
-//             stage('Deploy') {
-//                 steps {
-//                     echo 'Deploying the application...'
-//                     sh '''
-//                     # Ganti dengan perintah deploy yang sesuai dengan kebutuhan Anda
-//                     scp build/libs/myapp.jar root@157.245.199.194:/path/to/deploy/
-//                     ssh root@157.245.199.194 'java -jar /path/to/deploy/myapp.jar &'
-//                     '''
-//                 }
-//             }
+            stage('Deploy') {
+                steps {
+                    echo 'Deploying the application...'
+                    withCredentials([sshUserPrivateKey(credentialsId: 'github-jvadrn', keyFileVariable: 'SSH_KEY')]) {
+                    sh '''
+                    scp -i $SSH_KEY target/my-app-1.0-SNAPSHOT.jar root@157.245.199.194:/path/to/deploy/
+                    ssh -i $SSH_KEY root@157.245.199.194 'java -jar /path/to/deploy/my-app-1.0-SNAPSHOT.jar &'
+                    '''
+                }
+            }
         }
         post {
             always {
