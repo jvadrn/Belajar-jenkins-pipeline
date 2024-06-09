@@ -11,9 +11,7 @@ pipeline{
             stage('Build') {
                 steps {
                     echo 'Building the application...'
-                    dir('/belajar-jenkins-pipeline') {
-                    sh 'mvn clean package'
-                    }
+                    sh 'mvn clean build'
                 }
             }
             stage('Test') {
