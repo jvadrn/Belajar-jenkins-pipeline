@@ -5,7 +5,7 @@ pipeline{
         }
     }
     environment {
-            SH_KEY = credentials('github-jvadrn') // Ganti dengan ID kredensial SSH Anda
+            SSH_KEY = credentials('github-jvadrn') // Ganti dengan ID kredensial SSH Anda
     }
     tools {
             maven 'Apache Maven 3.8.7' // Nama konfigurasi Maven yang Anda tambahkan
