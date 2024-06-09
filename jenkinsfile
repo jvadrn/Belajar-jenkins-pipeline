@@ -31,7 +31,6 @@ pipeline{
                                             // Restart the application on the server
                         sh "ssh -i ${SSH_KEY} root@157.245.199.194 'java -jar /opt/deploy/my-app-1.0-SNAPSHOT.jar &'"
                     }
-                }
             }
         }
         post {
