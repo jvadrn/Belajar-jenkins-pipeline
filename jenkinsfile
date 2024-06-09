@@ -1,8 +1,11 @@
 pipeline{
     agent {
-    node{
-        label 'linux && java11'
+        node{
+            label 'linux && java11'
+        }
     }
+    environment {
+            SH_KEY = credentials('github-jvadrn') // Ganti dengan ID kredensial SSH Anda
     }
     tools {
             maven 'Apache Maven 3.8.7' // Nama konfigurasi Maven yang Anda tambahkan
@@ -23,11 +26,10 @@ pipeline{
             stage('Deploy') {
                     steps {
                         echo 'Deploying the application...'
-                        withCredentials([sshUserPrivateKey(credentialsId: 'github-jvadrn', keyFileVariable: 'SSH_KEY')]) {
-                        sh '''
-                        scp -i $SSH_KEY target/my-app-1.0-SNAPSHOT.jar root@157.245.199.194:/opt/deploy/
-                        ssh -i $SSH_KEY root@157.245.199.194 'java -jar /opt/deploy/my-app-1.0-SNAPSHOT.jar &'
-                        '''
+                        sh "scp -i ${SSH_KEY} target/my-app-1.0-SNAPSHOT.jar root@157.245.199.194:/opt/deploy/"
+
+                                            // Restart the application on the server
+                        sh "ssh -i ${SSH_KEY} root@157.245.199.194 'java -jar /opt/deploy/my-app-1.0-SNAPSHOT.jar &'"
                     }
                 }
             }
