@@ -1,7 +1,5 @@
 pipeline{
-    agent {
-        label any
-    }
+    agent any
     tools {
             maven 'Apache Maven 3.8.7' // Nama konfigurasi Maven yang Anda tambahkan
     }
