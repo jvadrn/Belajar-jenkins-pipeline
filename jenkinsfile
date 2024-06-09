@@ -1,8 +1,6 @@
 pipeline{
     agent {
-        node {
-            label "linux && java11"
-        }
+        label any
     }
     tools {
             maven 'Apache Maven 3.8.7' // Nama konfigurasi Maven yang Anda tambahkan
