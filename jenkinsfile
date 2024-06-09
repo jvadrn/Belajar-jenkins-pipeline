@@ -23,7 +23,7 @@ pipeline{
             stage('Deploy') {
                     steps {
                         echo 'Deploying the application...'
-                        withCredentials([sshUserPrivateKey(credentialsId: 'your-ssh-credentials-id', keyFileVariable: 'SSH_KEY')]) {
+                        withCredentials([sshUserPrivateKey(credentialsId: 'github-jvadrn', keyFileVariable: 'SSH_KEY')]) {
                         sh '''
                         scp -i $SSH_KEY target/my-app-1.0-SNAPSHOT.jar root@157.245.199.194:/opt/deploy/
                         ssh -i $SSH_KEY root@157.245.199.194 'java -jar /opt/deploy/my-app-1.0-SNAPSHOT.jar &'
